@@ -1,6 +1,6 @@
 {
   "name": "@antv/my-f2",
-  "version": "0.0.1-beta",
+  "version": "0.0.1",
   "description": "F2 for mini-program",
   "main": "build/my-f2.js",
   "browser": "build/my-f2.min.js",

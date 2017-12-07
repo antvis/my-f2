@@ -10,16 +10,11 @@
 
 F2 for mini-program.
 
-## Installing
+## Install
 
 `npm install @antv/my-f2`
 
-```js
-import DataSet from '@antv/my-f2';
-
-```
-
-## Using
+## Usage
 
 ```html
 <!-- page.axml, pixeRatio = 2 -->
@@ -73,4 +68,3 @@ chart.render();
 
 See details at https://antv.alipay.com
 
-## Contributing

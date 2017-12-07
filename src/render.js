@@ -32,7 +32,7 @@ export default class Render {
     const context = {};
     Object.keys(CAPITALIZED_ATTRS_MAP).map(key => {
       Object.defineProperty(context, key, {
-        set: function(value) {
+        set(value) {
           const name = 'set' + CAPITALIZED_ATTRS_MAP[key];
           myCtx[name](value);
         }
@@ -45,7 +45,7 @@ export default class Render {
       if (typeof myCtx[funcName] === 'function') {
         context[funcName] = function(...theArgs) {
           myCtx[funcName](...theArgs);
-        }
+        };
       }
     });
 
