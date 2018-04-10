@@ -1,6 +1,6 @@
 {
   "name": "@antv/my-f2",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "F2 for mini-program",
   "main": "build/my-f2.js",
   "browser": "build/my-f2.min.js",
@@ -29,7 +29,7 @@
     "connect": "^3.6.3",
     "d3-queue": "^3.0.7",
     "debug": "^3.1.0",
-    "electron": "~1.6.11",
+    "electron": "~1.8.2-beta5",
     "eslint": "^3.19.0",
     "eslint-config-airbnb": "^15.0.1",
     "eslint-config-egg": "^4.2.0",
@@ -73,6 +73,6 @@
     "silent": false
   },
   "dependencies": {
-    "@antv/f2": "^3.0.1"
+    "@antv/f2": "3.0.3"
   }
 }
