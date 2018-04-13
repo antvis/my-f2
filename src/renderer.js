@@ -51,9 +51,9 @@ export default class Renderer extends EventEmitter {
       return null;
     };
     myCtx.transform = function(a, b, c, d, e, f) {
+      myCtx.translate(e, f);
       myCtx.scale(a, d);
       myCtx.rotate(b, c);
-      myCtx.translate(e, f);
     };
   }
 }
