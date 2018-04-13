@@ -10,7 +10,7 @@
   ],
   "main": "build/my-f2.js",
   "browser": "build/my-f2.js",
-  "module": "index.js",
+  "module": "src/index.js",
   "repository": {
     "type": "git",
     "url": "git@github.com:antvis/my-f2.git"
