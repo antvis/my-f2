@@ -8,13 +8,13 @@
 [![NPM downloads](http://img.shields.io/npm/dm/@antv/my-f2.svg)](https://npmjs.org/package/@antv/my-f2)
 [![Percentage of issues still open](http://isitmaintained.com/badge/open/antvis/my-f2.svg)](http://isitmaintained.com/project/antvis/my-f2 "Percentage of issues still open")
 
-F2 for mini-program.
+F2 for alipay mini-program.
 
-## Install
+## 下载
 
 `npm install @antv/my-f2`
 
-## Usage
+## 使用
 
 ```html
 <!-- page.axml, pixeRatio = 2 -->
@@ -64,7 +64,15 @@ chart.interval().position('city*tem').color('city');
 chart.render();
 ```
 
+
 ## API
 
 See details at https://antv.alipay.com
+
+## FAQ
+
+### 画布分辨率问题
+
+
+### 是否可以封装成小程序组件
 
