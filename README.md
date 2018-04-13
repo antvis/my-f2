@@ -10,6 +10,8 @@
 
 F2 for alipay mini-program.
 
+说明：目前由于小程序不支持 document，所以 Guide.Html 辅助元素组件目前仍无法使用，其他 F2 的功能全部支持。
+
 ## 下载
 
 `npm install @antv/my-f2`
