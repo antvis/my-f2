@@ -3,11 +3,11 @@ const resolve = require('path').resolve;
 
 module.exports = {
   entry: {
-    'my-f2': './index.js'
+    'my-f2': './src/index.js'
   },
   output: {
     filename: '[name].js',
-    library: 'myF2',
+    library: 'MyF2',
     libraryTarget: 'umd',
     path: resolve(__dirname, 'build/')
   },
