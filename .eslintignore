@@ -5,7 +5,6 @@ dist/
 lib/
 mocks/
 node_modules/
-lib/
 bin/
 demos/index.html
 docs/
