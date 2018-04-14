@@ -16,6 +16,10 @@ F2 for alipay mini-program.
 
 `npm install @antv/my-f2`
 
+## 示例
+
+Demos: https://github.com/antvis/mini-program-f2-demos/tree/master/my-charts ，可以使用支付宝开发工具直接打开体验。
+
 ## 使用
 
 ```css
