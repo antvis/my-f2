@@ -45,15 +45,5 @@ export default class Renderer extends EventEmitter {
       });
       return key;
     });
-
-    // 由于目前支付宝小程序尚不支持以下接口，故进行 mock
-    myCtx.setLineDash = function() {
-      return null;
-    };
-    myCtx.transform = function(a, b, c, d, e, f) {
-      myCtx.translate(e, f);
-      myCtx.scale(a, d);
-      myCtx.rotate(b, c);
-    };
   }
 }
