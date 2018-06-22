@@ -37,7 +37,7 @@ F2.Util.removeEventListener = function(source, type, listener) {
 };
 
 F2.Util.createEvent = function(event, chart) {
-  const pixelRatio = chart.get('pixelRatio') || 1;
+  // const pixelRatio = chart.get('pixelRatio') || 1;
   const type = event.type;
   let x = 0;
   let y = 0;
@@ -50,8 +50,10 @@ F2.Util.createEvent = function(event, chart) {
   return {
     type,
     chart,
-    x: x * pixelRatio,
-    y: y * pixelRatio
+    x,
+    y
+    // x: x * pixelRatio,
+    // y: y * pixelRatio
   };
 };
 
