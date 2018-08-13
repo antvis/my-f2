@@ -31,13 +31,13 @@ canvas {
 ```
 
 ```html
-<!-- page.axml, pixeRatio = 2 -->
 <view class="container">
   <canvas
     id="area"
     onTouchStart="touchStart"
     onTouchMove="touchMove"
     onTouchEnd="touchEnd"
+    width="{{width}}" height="{{height}}"
   />
 </view>
 ```
@@ -78,30 +78,6 @@ function drawChart(canvas, width, height) {
       tickCount: 4
     }
   });
-  chart.tooltip({
-    showCrosshairs: true,
-    custom: true, // 自定义 tooltip 内容框
-    onChange(obj) {
-      const legend = chart.get('legendController').legends.top[0];
-      const tooltipItems = obj.items;
-      const legendItems = legend.items;
-      const map = {};
-      legendItems.map(item => {
-        map[item.name] = Object.assign({}, item);
-      });
-      tooltipItems.map(item => {
-        const { name, value } = item;
-        if (map[name]) {
-          map[name].value = value;
-        }
-      });
-      legend.setItems(Object.values(map));
-    },
-    onHide() {
-      const legend = chart.get('legendController').legends.top[0];
-      legend.setItems(chart.getLegendItems().country);
-    }
-  });
   chart.axis('date', {
     label(text, index, total) {
       const textCfg = {};
@@ -127,9 +103,21 @@ Page({
       .select('#area')
       .boundingClientRect()
       .exec((res) => {
+        // 获取分辨率
+        const pixelRatio = my.getSystemInfoSync().pixelRatio;
+        // 获取画布实际宽高
+        const canvasWidth = res[0].width;
+        const canvasHeight = res[0].height;
+        // 高清解决方案
+        this.setData({
+          width: canvasWidth * pixelRatio,
+          height: canvasHeight * pixelRatio
+        }); 
         const myCtx = my.createCanvasContext('area');
+        myCtx.scale(pixelRatio, pixelRatio); // 必要！按照设置的分辨率进行放大
         const canvas = new F2.Renderer(myCtx);
         this.canvas = canvas;
+        //console.log(res[0].width, res[0].height);
         drawChart(canvas, res[0].width, res[0].height);
       });
   },
@@ -158,31 +146,6 @@ Page({
 
 具体 F2 的 api 参考：https://antv.alipay.com/zh-cn/f2/3.x/api/index.html
 
-## FAQ
-
-### 画布分辨率问题
-
-如果需要在高 dpr 下取得更细腻的显示，需要先将 canvas 用属性设置放大，用样式缩写，例如
-
-```html
-<!-- getSystemInfoSync().pixelRatio === 2 -->
-<canvas width="200" height="200" style="width:100px;height:100px;"/>
-```
-
-同时需要在创建 Chart 的时候将以上设置的像素比传入：
-
-```js
-chart = new F2.Chart({
-  el: canvas,
-  width,
-  height,
-  pixelRatio: 2
-});
-```
-
-### 是否可以封装成小程序组件
-
-支付宝小程序支持自定义组件之后支持。
 
 ## 如何贡献
 
