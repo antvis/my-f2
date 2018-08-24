@@ -18,7 +18,7 @@ F2 for alipay mini-program.
 
 ## 示例
 
-Demos: https://github.com/antvis/mini-program-f2-demos/tree/master/my-charts ，可以使用支付宝开发工具直接打开体验。
+Demos: https://github.com/antvis/mini-program-f2-demos/tree/master/ ，可以使用支付宝开发工具直接打开体验。
 
 ## 使用
 
