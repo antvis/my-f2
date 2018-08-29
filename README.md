@@ -94,7 +94,7 @@ function drawChart(canvas, width, height) {
   chart.line().position('date*value').color('city').adjust('stack');
   chart.render();
   return chart;
-} 
+}
 
 Page({
   data: {},
@@ -112,7 +112,7 @@ Page({
         this.setData({
           width: canvasWidth * pixelRatio,
           height: canvasHeight * pixelRatio
-        }); 
+        });
         const myCtx = my.createCanvasContext('area');
         myCtx.scale(pixelRatio, pixelRatio); // 必要！按照设置的分辨率进行放大
         const canvas = new F2.Renderer(myCtx);
@@ -145,6 +145,20 @@ Page({
 由于 f2-canvas 组件主要是对小程序的画布上下文和 html5 canvas 的上下文进行了适配以支持 F2 在小程序端的渲染，所以 **F2 能绘制什么图表，小程序端就能绘制什么图表**，使用时也只需按照 F2 的语法来写即可。
 
 具体 F2 的 api 参考：https://antv.alipay.com/zh-cn/f2/3.x/api/index.html
+
+
+## 说明
+如果项目对代码大小有要求，可以使用按需加载模块，只引入需要的模块，参加折线图 demo: `https://github.com/antvis/mini-program-f2-demos/blob/master/pages/charts/line/index.js`。
+
+如何进行按需加载，请参见：https://antv.alipay.com/zh-cn/f2/3.x/tutorial/require-on-demand.html
+
+```js
+import F2 from '@antv/my-f2/lib/core'; // 必须引入
+require('@antv/f2/lib/geom/line'); // 只引入折线图
+require('@antv/f2/lib/scale/time-cat'); // 时间类型的度量
+const Tooltip = require('@antv/f2/lib/plugin/tooltip'); // 引入 tooltip 插件
+```
+
 
 
 ## 如何贡献
