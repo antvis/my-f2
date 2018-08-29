@@ -4,8 +4,7 @@
  * @version 1.0.0
  */
 
-import EventEmitter from 'wolfy87-eventemitter';
-
+const EventEmitter = require('wolfy87-eventemitter');
 const CAPITALIZED_ATTRS_MAP = {
   fillStyle: 'FillStyle',
   fontSize: 'FontSize',
@@ -20,7 +19,7 @@ const CAPITALIZED_ATTRS_MAP = {
   textBaseline: 'TextBaseline'
 };
 
-export default class Renderer extends EventEmitter {
+class Renderer extends EventEmitter {
   constructor(myCtx) {
     super();
     const self = this;
@@ -47,3 +46,5 @@ export default class Renderer extends EventEmitter {
     });
   }
 }
+
+module.exports = Renderer;

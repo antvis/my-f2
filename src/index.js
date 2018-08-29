@@ -1,33 +1,35 @@
-import Renderer from './renderer';
-import F2 from '@antv/f2/lib/index-all'; // 引入完整版本 F2
+const F2 = require('./core');
 
-// 为小程序封装事件机制
-F2.Util.addEventListener = function(source, type, listener) {
-  source.addListener(type, listener);
-};
+require('@antv/f2/lib/geom/');
+require('@antv/f2/lib/geom/adjust/');
 
-F2.Util.removeEventListener = function(source, type, listener) {
-  source.removeListener(type, listener);
-};
+require('@antv/f2/lib/coord/polar'); // polar coordinate
+require('@antv/f2/lib/component/axis/circle'); // the axis for polar coordinate
 
-F2.Util.createEvent = function(event, chart) {
-  const type = event.type;
-  let x = 0;
-  let y = 0;
-  const touches = event.touches;
-  if (touches && touches.length > 0) {
-    x = touches[0].x;
-    y = touches[0].y;
-  }
+require('@antv/f2/lib/scale/time-cat'); // timeCat scale
 
-  return {
-    type,
-    chart,
-    x,
-    y
-  };
-};
+require('@antv/f2/lib/component/guide/arc'); // guide components
+require('@antv/f2/lib/component/guide/line'); // guide components
+require('@antv/f2/lib/component/guide/text'); // guide components
+require('@antv/f2/lib/component/guide/tag'); // guide components
+require('@antv/f2/lib/component/guide/rect'); // guide components
+require('@antv/f2/lib/component/guide/region-filter'); // guide components
+require('@antv/f2/lib/component/guide/point'); // guide components
 
-F2.Renderer = Renderer;
+const Tooltip = require('@antv/f2/lib/plugin/tooltip');
+const Guide = require('@antv/f2/lib/plugin/guide');
+const Legend = require('@antv/f2/lib/plugin/legend');
+const Animation = require('@antv/f2/lib/animation/detail');
+const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar');
 
-export default F2;
+F2.Animate = require('@antv/f2/lib/animation/animate');
+// register plugins
+F2.Chart.plugins.register([ Tooltip, Legend, Guide, Animation, ScrollBar ]);
+
+// add interaction
+require('@antv/f2/lib/interaction/pie-select');
+require('@antv/f2/lib/interaction/interval-select');
+require('@antv/f2/lib/interaction/pan');
+F2.Interaction = require('@antv/f2/lib/interaction/base');
+
+module.exports = F2;
