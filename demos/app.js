@@ -49,7 +49,7 @@ function startService(port) {
           .map(filename => {
             const bn = basename(filename, '.html');
             const file = {
-              screenshot: `/demos/assets/screenshots/bn.png`,
+              screenshot: `/demos/assets/screenshots/${bn}.png`,
               basename: bn,
               content: readFileSync(filename),
               filename
@@ -70,8 +70,8 @@ function startService(port) {
   server.use(serveStatic(process.cwd()));
   http.createServer(server).listen(port);
 
-  const url = `http://127.0.0.1:port/demos/index.html`;
-  debug(`server started, demos available! url`);
+  const url = `http://127.0.0.1:${port}/demos/index.html`;
+  debug(`server started, demos available! ${url}`);
 
   if (commander.web) {
     debug('running on web!');

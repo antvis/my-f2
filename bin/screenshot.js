@@ -1,26 +1,28 @@
 #!/usr/bin/env node
+process.env.DEBUG = 'app:*';
 const debug = require('debug')('app:screenshot');
 const MAX_POOL_SIZE = require('os').cpus().length;
+const Nightmare = require('nightmare');
+const _ = require('lodash');
+const commander = require('commander');
 const connect = require('connect');
 const getPort = require('get-port');
 const http = require('http');
+const path = require('path');
+const basename = path.basename;
+const extname = path.extname;
+const join = path.join;
+const queue = require('d3-queue').queue;
 const serveStatic = require('serve-static');
 const shelljs = require('shelljs');
-const mkdir = shelljs.mkdir;
 const ls = shelljs.ls;
-const queue = require('d3-queue').queue;
-const path = require('path');
-const join = path.join;
-const extname = path.extname;
-const basename = path.basename;
-const commander = require('commander');
-const Nightmare = require('nightmare');
+const mkdir = shelljs.mkdir;
 const pkg = require('../package.json');
 
 commander
   .version(pkg.version)
   .option('-p, --port <port>', 'specify a port number to run on', parseInt)
-  .option('-n, --name <name>', 'specify the name for demos')
+  .option('-f, --filter <filter>', 'specify the name filter for demos')
   .parse(process.argv);
 
 // assets
@@ -42,8 +44,8 @@ getPort().then(port => {
   const files = ls(src).filter(filename => (extname(filename) === '.html'));
   files.forEach(filename => {
     const name = basename(filename, '.html');
-    if (commander.name && filename.indexOf(commander.name) === -1) {
-      debug(`>>>>>>>>> skipping because filename not matched: my-f2`);
+    if (_.isString(commander.filter) && filename.indexOf(commander.filter) === -1) {
+      debug(`>>>>>>>>> skipping because filename not matched: ${name}`);
       return;
     }
     q.defer(callback => {
@@ -52,8 +54,8 @@ getPort().then(port => {
         gotoTimeout: 600000,
         show: false
       });
-      const url = `http://127.0.0.1:port/demos/my-f2.html`;
-      const target = join(dest, `./my-f2.png`);
+      const url = `http://127.0.0.1:${port}/demos/${name}.html`;
+      const target = join(dest, `./${name}.png`);
       nightmare.viewport(800, 450) // 16 x 9
         .goto(url)
         .wait(DELAY)

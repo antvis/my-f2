@@ -1,10 +1,7 @@
 build/
 coverage/
-demos/
+demos/assets/
 dist/
 lib/
 mocks/
 node_modules/
-bin/
-demos/index.html
-docs/

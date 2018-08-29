@@ -2,12 +2,13 @@ const webpack = require('webpack');
 const resolve = require('path').resolve;
 
 module.exports = {
+  devtool: 'cheap-source-map',
   entry: {
     'my-f2': './src/index.js'
   },
   output: {
     filename: '[name].js',
-    library: 'MyF2',
+    library: 'myF2',
     libraryTarget: 'umd',
     path: resolve(__dirname, 'build/')
   },
@@ -25,12 +26,11 @@ module.exports = {
             ],
             presets: [
               [
-                'es2015', {
-                  loose: true
-                  // modules: false
+                'env', {
+                  loose: true,
+                  modules: false
                 }
-              ],
-              'stage-0'
+              ]
             ]
           }
         }

@@ -60,13 +60,18 @@ typings/
 # dotenv environment variables file
 .env
 
-build
-dist
-temp
 .DS_Store
-.idea
-demos/assets/screenshots
+
+# npmignore - content above this line is automatically generated and modifications may be omitted
+# see npmjs.com/npmignore for more details.
+test
 
 *.sw*
 *.un~
-lib
+.idea
+bin
+demos
+docs
+temp
+webpack-dev.config.js
+webpack.config.js
