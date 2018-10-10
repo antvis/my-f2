@@ -1,12 +1,24 @@
 const Renderer = require('./renderer');
 const Core = require('@antv/f2/lib/core'); // 引入 F2 的核心包
+
+const EVENTS_MAP = {
+  touchstart: 'touchStart',
+  touchmove: 'touchMove',
+  touchend: 'touchEnd',
+  touchcancel: 'touchCancel'
+};
+
 // 为小程序封装事件机制
 Core.Util.addEventListener = function(source, type, listener) {
-  source.addListener(type, listener);
+  const context = source.getContext('2d');
+  type = EVENTS_MAP[type]; // 支付宝小程序事件名为驼峰结构
+  context.addEventListener(type, listener);
 };
 
 Core.Util.removeEventListener = function(source, type, listener) {
-  source.removeListener(type, listener);
+  const context = source.getContext('2d');
+  type = EVENTS_MAP[type]; // 支付宝小程序事件名为驼峰结构
+  context.removeEventListener(type, listener);
 };
 
 Core.Util.createEvent = function(event, chart) {

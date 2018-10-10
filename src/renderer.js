@@ -4,7 +4,6 @@
  * @version 1.0.0
  */
 
-const EventEmitter = require('wolfy87-eventemitter');
 const CAPITALIZED_ATTRS_MAP = {
   fillStyle: 'FillStyle',
   fontSize: 'FontSize',
@@ -19,9 +18,8 @@ const CAPITALIZED_ATTRS_MAP = {
   textBaseline: 'TextBaseline'
 };
 
-class Renderer extends EventEmitter {
+class Renderer {
   constructor(myCtx) {
-    super();
     const self = this;
     self.ctx = myCtx;
     self.style = {}; // just mock
