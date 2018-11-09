@@ -161,6 +161,8 @@ const Tooltip = require('@antv/f2/lib/plugin/tooltip'); // 引入 tooltip 插件
 
 **如果您在使用该模块时，发现打包后大小很大，可以直接下载压缩后的 my-f2.min.js 到项目本地，比如 /lib/ 下，然后在项目中直接引入本地的这个 my-f2 脚本:**
 
+下载地址：https://unpkg.com/@antv/my-f2@1.1.3/dist/my-f2.min.js  注意更新版本号。
+
 ```js
 import F2 from '../lib/my-f2';
 ```
