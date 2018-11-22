@@ -17,7 +17,7 @@ function strLen(str) {
 // override some methods
 // 由于目前钉钉小程序框架善不支持 measureText 方法，故用此方法 mock
 Core.Util.measureText = function(text, font, ctx) {
-  if (!ctx.measureText) {
+  if (!ctx || !ctx.measureText) {
     let fontSize = 12;
     if (font) {
       fontSize = parseInt(font.split(' ')[3], 10);
