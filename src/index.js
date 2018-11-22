@@ -21,10 +21,11 @@ const Guide = require('@antv/f2/lib/plugin/guide');
 const Legend = require('@antv/f2/lib/plugin/legend');
 const Animation = require('@antv/f2/lib/animation/detail');
 const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar');
+const PieLabel = require('@antv/f2/lib/plugin/pie-label');
 
 F2.Animate = require('@antv/f2/lib/animation/animate');
 // register plugins
-F2.Chart.plugins.register([ Tooltip, Legend, Guide, Animation, ScrollBar ]);
+F2.Chart.plugins.register([ Tooltip, Legend, Guide, Animation, ScrollBar, PieLabel ]);
 
 // add interaction
 require('@antv/f2/lib/interaction/pie-select');
