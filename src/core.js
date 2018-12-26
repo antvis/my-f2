@@ -12,16 +12,17 @@ const EVENTS_MAP = {
 Core.Util.addEventListener = function(source, type, listener) {
   const context = source.getContext('2d');
   type = EVENTS_MAP[type]; // 支付宝小程序事件名为驼峰结构
-  context.addEventListener(type, listener);
+  context.emitter.addListener(type, listener);
 };
 
 Core.Util.removeEventListener = function(source, type, listener) {
   const context = source.getContext('2d');
   type = EVENTS_MAP[type]; // 支付宝小程序事件名为驼峰结构
-  context.removeEventListener(type, listener);
+  context.emitter.removeListener(type, listener);
 };
 
 Core.Util.createEvent = function(event, chart) {
+  event = event[0]
   const type = event.type;
   let x = 0;
   let y = 0;
