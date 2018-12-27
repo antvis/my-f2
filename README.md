@@ -123,17 +123,17 @@ Page({
   },
   touchStart(e) {
     if (this.canvas) {
-      this.canvas.emitEvent('touchstart', [e]);
+      this.canvas.ctx.emitter.emit('touchStart', [e]);
     }
   },
   touchMove(e) {
     if (this.canvas) {
-      this.canvas.emitEvent('touchmove', [e]);
+      this.canvas.ctx.emitter.emit('touchMove', [e]);
     }
   },
   touchEnd(e) {
     if (this.canvas) {
-      this.canvas.emitEvent('touchend', [e]);
+      this.canvas.ctx.emitter.emit('touchEnd', [e]);
     }
   }
 });
