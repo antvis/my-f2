@@ -22,7 +22,9 @@ Core.Util.removeEventListener = function(source, type, listener) {
 };
 
 Core.Util.createEvent = function(event, chart) {
-  event = event[0]
+  if(event[0]){
+    event = event[0]
+  }  
   const type = event.type;
   let x = 0;
   let y = 0;
