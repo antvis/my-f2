@@ -16,7 +16,8 @@ const CAPITALIZED_ATTRS_MAP = {
   miterLimit: 'MiterLimit',
   strokeStyle: 'StrokeStyle',
   textAlign: 'TextAlign',
-  textBaseline: 'TextBaseline'
+  textBaseline: 'TextBaseline',
+  shadow: 'Shadow'
 };
 
 class Renderer extends EventEmitter {
@@ -38,8 +39,13 @@ class Renderer extends EventEmitter {
     Object.keys(CAPITALIZED_ATTRS_MAP).map(key => {
       Object.defineProperty(myCtx, key, {
         set(value) {
-          const name = 'set' + CAPITALIZED_ATTRS_MAP[key];
-          myCtx[name](value);
+          // myCtx.setShadow(shadowOffsetX, shadowOffsetY, shadowBlur, shadowColor)
+          if (key === 'shadow' && myCtx.setShadow && Array.isArray(value)) {
+            myCtx.setShadow(value[0], value[1], value[2], value[3]);
+          } else {
+            const name = 'set' + CAPITALIZED_ATTRS_MAP[key];
+            myCtx[name](value);
+          }
         }
       });
       return key;
