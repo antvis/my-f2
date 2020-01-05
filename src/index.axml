@@ -1,0 +1,9 @@
+<canvas
+  id="f2-canvas-{{$id}}"
+  class="f2-canvas"
+  width="{{width}}"
+  height="{{height}}"
+  onTouchStart="touchStart"
+  onTouchMove="touchMove"
+  onTouchEnd="touchEnd"
+/>

@@ -1,37 +1,52 @@
-const F2 = require('./core');
+import F2 from '@antv/f2';
+import { my as F2Context } from '@antv/f2-context';
 
-require('@antv/f2/lib/geom/');
-require('@antv/f2/lib/geom/adjust/');
+Component({
+  // mixins: [],
+  // data: {},
+  props: {
+    onInit: () => {}
+  },
+  didMount() {
+    const id = `f2-canvas-${this.$id}`;
+    const myCtx = my.createCanvasContext(id);
+    const context = F2Context(myCtx);
 
-require('@antv/f2/lib/coord/polar'); // polar coordinate
-require('@antv/f2/lib/component/axis/circle'); // the axis for polar coordinate
+    const query = my.createSelectorQuery();
+    query
+      .select(`#${id}`)
+      .boundingClientRect()
+      .exec(res => {
+        // 获取画布实际宽高
+        const { width, height } = res[0];
+        const pixelRatio = my.getSystemInfoSync().pixelRatio;
+        // 高清解决方案
+        this.setData({
+          id,
+          width: width * pixelRatio,
+          height: height * pixelRatio
+        });
+        this.chart = this.props.onInit(F2, { context, width, height, pixelRatio });
+      });
 
-require('@antv/f2/lib/scale/time-cat'); // timeCat scale
-
-require('@antv/f2/lib/component/guide/arc'); // guide components
-require('@antv/f2/lib/component/guide/line'); // guide components
-require('@antv/f2/lib/component/guide/text'); // guide components
-require('@antv/f2/lib/component/guide/tag'); // guide components
-require('@antv/f2/lib/component/guide/rect'); // guide components
-require('@antv/f2/lib/component/guide/region-filter'); // guide components
-require('@antv/f2/lib/component/guide/point'); // guide components
-
-const Tooltip = require('@antv/f2/lib/plugin/tooltip');
-const Guide = require('@antv/f2/lib/plugin/guide');
-const Legend = require('@antv/f2/lib/plugin/legend');
-const Animation = require('@antv/f2/lib/animation/detail');
-const ScrollBar = require('@antv/f2/lib/plugin/scroll-bar');
-const PieLabel = require('@antv/f2/lib/plugin/pie-label');
-const intervalLabel = require('@antv/f2/lib/plugin/interval-label');
-
-F2.Animate = require('@antv/f2/lib/animation/animate');
-// register plugins
-F2.Chart.plugins.register([ Tooltip, Legend, Guide, Animation, ScrollBar, PieLabel, intervalLabel ]);
-
-// add interaction
-require('@antv/f2/lib/interaction/pie-select');
-require('@antv/f2/lib/interaction/interval-select');
-require('@antv/f2/lib/interaction/pan');
-F2.Interaction = require('@antv/f2/lib/interaction/base');
-
-module.exports = F2;
+  },
+  // didUpdate() {},
+  // didUnmount() {},
+  methods: {
+    touchStart(e) {
+      if (this.chart) {
+        this.chart.get('el').dispatchEvent('touchstart', e);
+      }
+    },
+    touchMove(e) {
+      if (this.chart) {
+        this.chart.get('el').dispatchEvent('touchmove', e);
+      }
+    },
+    touchEnd(e) {
+      if (this.chart) {
+        this.chart.get('el').dispatchEvent('touchend', e);
+      }
+    }
+  }
+});
