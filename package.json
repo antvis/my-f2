@@ -8,7 +8,8 @@
     "build": "npm run clean && rollup -c && npm run cp",
     "cp": "node ./scripts/cp.js",
     "clean": "rm -rf es",
-    "lint": "eslint ./src --ext .js"
+    "lint": "eslint ./src --ext .js",
+    "ci": "npm run lint"
   },
   "dependencies": {
     "@antv/f2": "^3.5.0-beta.4",
@@ -17,6 +18,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^11.0.1",
     "@rollup/plugin-node-resolve": "^6.1.0",
+    "babel-eslint": "^10.0.3",
     "eslint": "^6.8.0",
     "eslint-config-egg": "^8.0.0",
     "fs-extra": "^8.1.0",

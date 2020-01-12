@@ -39,7 +39,7 @@ npm install @antv/my-f2 --save
 
 #### 3. 实例化图表
 
-```xml
+```js
 Page({
   data: {},
   onInitChart(F2, config) {
