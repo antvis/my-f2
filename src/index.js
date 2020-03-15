@@ -1,6 +1,14 @@
 import F2 from '@antv/f2';
 import { my as F2Context } from '@antv/f2-context';
 
+function wrapEvent(e) {
+  if (!e) return;
+  if (!e.preventDefault) {
+    e.preventDefault = function() {};
+  }
+  return e;
+}
+
 Component({
   // mixins: [],
   // data: {},
@@ -26,7 +34,11 @@ Component({
           width: width * pixelRatio,
           height: height * pixelRatio
         });
-        this.chart = this.props.onInit(F2, { context, width, height, pixelRatio });
+        const chart = this.props.onInit(F2, { context, width, height, pixelRatio });
+        if (chart) {
+          this.chart = chart;
+          this.canvasEl = chart.get('el');
+        }
       });
 
   },
@@ -34,19 +46,25 @@ Component({
   // didUnmount() {},
   methods: {
     touchStart(e) {
-      if (this.chart) {
-        this.chart.get('el').dispatchEvent('touchstart', e);
+      const canvasEl = this.canvasEl;
+      if (!canvasEl) {
+        return;
       }
+      canvasEl.dispatchEvent('touchstart', wrapEvent(e));
     },
     touchMove(e) {
-      if (this.chart) {
-        this.chart.get('el').dispatchEvent('touchmove', e);
+      const canvasEl = this.canvasEl;
+      if (!canvasEl) {
+        return;
       }
+      canvasEl.dispatchEvent('touchmove', wrapEvent(e));
     },
     touchEnd(e) {
-      if (this.chart) {
-        this.chart.get('el').dispatchEvent('touchend', e);
+      const canvasEl = this.canvasEl;
+      if (!canvasEl) {
+        return;
       }
+      canvasEl.dispatchEvent('touchend', wrapEvent(e));
     }
   }
 });
