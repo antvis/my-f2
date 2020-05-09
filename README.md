@@ -37,7 +37,7 @@ npm install @antv/my-f2 --save
 
 ```xml
 <view class="container">
-  <f2 class="f2-chart" onInit="onInitChart"></f2>
+  <f2 class="f2-chart" onInit="{{onInitChart}}"></f2>
 </view>
 ```
 
