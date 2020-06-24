@@ -36,8 +36,8 @@ npm install @antv/my-f2 --save
 #### 2. axml 使用组件
 
 ```xml
-<view class="container">
-  <f2 class="f2-chart" onInit="onInitChart"></f2>
+<view class="f2-chart">
+  <f2 onInit="onInitChart"></f2>
 </view>
 ```
 
