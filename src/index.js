@@ -33,12 +33,13 @@ Component({
           id,
           width: width * pixelRatio,
           height: height * pixelRatio
+        }, () => {
+          const chart = this.props.onInit(F2, { context, width, height, pixelRatio });
+          if (chart) {
+            this.chart = chart;
+            this.canvasEl = chart.get('el');
+          }
         });
-        const chart = this.props.onInit(F2, { context, width, height, pixelRatio });
-        if (chart) {
-          this.chart = chart;
-          this.canvasEl = chart.get('el');
-        }
       });
 
   },
