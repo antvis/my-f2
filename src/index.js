@@ -13,7 +13,10 @@ Component({
   // mixins: [],
   // data: {},
   props: {
-    onInit: () => {}
+    onInit: () => {},
+    // width height 会作为元素兜底的宽高使用
+    width: 300,
+    height: 150
   },
   didMount() {
     const id = `f2-canvas-${this.$id}`;
@@ -25,8 +28,8 @@ Component({
       .select(`#${id}`)
       .boundingClientRect()
       .exec(res => {
-        // 获取画布实际宽高
-        const { width, height } = res[0];
+        // 获取画布实际宽高, 用props的宽高做失败兜底
+        const { width, height } = res && res[0] ? res[0] : this.props;
         const pixelRatio = my.getSystemInfoSync().pixelRatio;
         // 高清解决方案
         this.setData({
