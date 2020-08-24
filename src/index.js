@@ -40,7 +40,8 @@ Component({
           width: width * pixelRatio,
           height: height * pixelRatio
         }, () => {
-          const chart = this.props.onInit(F2, { context, width, height, pixelRatio });
+          const ref = this;
+          const chart = this.props.onInit(F2, { context, width, height, pixelRatio }, ref);
           if (chart) {
             this.chart = chart;
             this.canvasEl = chart.get('el');
