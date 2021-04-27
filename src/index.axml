@@ -1,5 +1,6 @@
 <canvas
-  id="f2-canvas-{{$id}}"
+  a:if="{{$pageId >= 0}}"
+  id="f2-canvas-{{$pageId}}-{{$id}}"
   class="f2-canvas"
   width="{{width}}"
   height="{{height}}"

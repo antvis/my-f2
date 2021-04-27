@@ -19,10 +19,14 @@ Component({
     height: null
   },
   didMount() {
-    const id = `f2-canvas-${this.$id}`;
+    const pageId = this.$page && this.$page.$id || 0;
+    const id = `f2-canvas-${pageId}-${this.$id}`;
     const myCtx = my.createCanvasContext(id);
     const context = F2Context(myCtx);
 
+    this.setData({
+      $pageId: pageId
+    });
     const query = my.createSelectorQuery();
     query
       .select(`#${id}`)
