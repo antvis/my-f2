@@ -21,13 +21,13 @@ Component({
   didMount() {
     const pageId = this.$page && this.$page.$id || 0;
     const id = `f2-canvas-${pageId}-${this.$id}`;
-    const myCtx = my.createCanvasContext(id);
+    const myCtx = my.createCanvasContext(id, { page: this.$page });
     const context = F2Context(myCtx);
 
     this.setData({
       $pageId: pageId
     });
-    const query = my.createSelectorQuery();
+    const query = my.createSelectorQuery({ page: this.$page });
     query
       .select(`#${id}`)
       .boundingClientRect()
