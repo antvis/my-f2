@@ -71,6 +71,7 @@ test
 .idea
 bin
 demos
+examples
 docs
 temp
 webpack-dev.config.js
