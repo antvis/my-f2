@@ -1,0 +1,7 @@
+{
+  "scripts": {
+  },
+  "dependencies": {
+    "@antv/my-f2": "^2.0.0"
+  }
+}

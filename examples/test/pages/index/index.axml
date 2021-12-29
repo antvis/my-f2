@@ -1,0 +1,3 @@
+<view class="f2-chart">
+  <f2 onInit="onInitChart"></f2>
+</view>
