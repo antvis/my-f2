@@ -39,6 +39,7 @@ npm install @antv/my-f2 --save
 <view class="f2-chart">
   <f2 onInit="onInitChart"></f2>
 </view>
+<button onTap="changeData">改变日期</button>
 ```
 
 #### 3. acss 设置宽高
@@ -53,9 +54,12 @@ npm install @antv/my-f2 --save
 
 ```js
 Page({
+  globalChart: null,
   data: {},
   onInitChart(F2, config) {
-    const chart = new F2.Chart(config);
+    if(!this.globalChart)
+    this.globalChart = new F2.Chart(config);
+    const chart = this.globalChart;
     const data = [
       { value: 63.4, city: 'New York', date: '2011-10-01' },
       { value: 62.7, city: 'Alaska', date: '2011-10-01' },
@@ -83,6 +87,23 @@ Page({
     chart.render();
     // 注意：需要把chart return 出来
     return chart;
+  }
+  changeData() {
+    if(!this.globalChart)
+    return
+    const newData = [
+      { value: 163.4, city: 'New York', date: '2011-11-01' },
+      { value: 162.7, city: 'Alaska', date: '2011-11-01' },
+      { value: 172.2, city: 'Austin', date: '2011-11-01' },
+      { value: 158, city: 'New York', date: '2011-11-02' },
+      { value: 159.9, city: 'Alaska', date: '2011-11-02' },
+      { value: 167.7, city: 'Austin', date: '2011-11-02' },
+      { value: 153.3, city: 'New York', date: '2011-11-03' },
+      { value: 159.1, city: 'Alaska', date: '2011-11-03' },
+      { value: 169.4, city: 'Austin', date: '2011-11-03' },
+    ];
+    this.globalChart.changeData(newData);
+    this.globalChart.repaint();
   }
 });
 ```
